@@ -1,0 +1,20 @@
+---
+# Tests PHP 7 is installed correctly
+
+# If using non-system sources (preferred)
+
+- name: determine if non-system PHP packages are installed - CentOS
+  command: rpm -qa
+  changed_when: False
+  register: php7_test_fact_php_non_system_packages_are_installed
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+- name: assert non-system PHP packages are installed
+  assert:
+    that:
+      - "'php7' in php7_test_fact_php_non_system_packages_are_installed.stdout"
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

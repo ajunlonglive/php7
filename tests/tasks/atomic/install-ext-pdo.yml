@@ -1,0 +1,23 @@
+---
+
+# The PDO extension is already enabled on Ubuntu when using non-system and system only package sources
+
+# If using non-system sources (preferred)
+
+- name: determine if PDO extension package is installed from non-system sources - CentOS
+  command: rpm -qa
+  changed_when: False
+  register: php7_test_fact_pdo_extension_is_installed_non_system_centos
+  when: ansible_distribution == "CentOS" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+- name: assert PDO extension package is installed from non-system sources - CentOS
+  assert:
+    that:
+      - "'-pdo' in php7_test_fact_pdo_extension_is_installed_non_system_centos.stdout"
+  when: ansible_distribution == "CentOS" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

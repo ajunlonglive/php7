@@ -1,0 +1,20 @@
+---
+# Tests if the XDebug extension is enabled
+
+# The PHP 7 XDebug package for CentOS is currently missing from the webtatic repository and so cannot be installed
+# It is therefore skipped until this is resolved
+
+- name: get PHP version
+  command: php -v
+  changed_when: False
+  register: php7_test_fact_php_version
+- name: assert XDebug extension is present
+  assert:
+    that:
+      - "'with Xdebug' in php7_test_fact_php_version.stdout"
+  when: ansible_distribution == "Ubuntu"
+
+- name: determine if XDebug extension is enabled
+  shell: php -i | grep -q 'xdebug support => enabled'
+  changed_when: False
+  when: ansible_distribution == "Ubuntu"

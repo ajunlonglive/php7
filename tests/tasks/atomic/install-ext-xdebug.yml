@@ -1,0 +1,30 @@
+---
+# Tests the XDebug extension is installed
+
+# CentOS and Ubuntu do use different packages for non-system and system-only packages
+# however they are common enough for this check to be sufficient
+
+# The PHP 7 XDebug package for CentOS is currently missing from the webtatic repository and so cannot be installed
+# It is therefore skipped until this is resolved
+
+# - name: determine if XDebug extension package is installed - CentOS
+#   command: rpm -qa
+#   changed_when: False
+#   register: php7_test_fact_xdebug_extension_is_installed_centos
+#   when: ansible_distribution == "CentOS"
+# - name: assert XDebug extension package is installed - CentOS
+#   assert:
+#     that:
+#       - "'-pecl-xdebug' in php7_test_fact_xdebug_extension_is_installed_centos.stdout"
+#   when: ansible_distribution == "CentOS"
+
+- name: determine if XDebug extension package is installed - Ubuntu
+  command: dpkg -s php-xdebug
+  changed_when: False
+  register: php7_test_fact_xdebug_extension_is_installed_ubuntu
+  when: ansible_distribution == "Ubuntu"
+- name: assert XDebug extension package is installed
+  assert:
+    that:
+      - "'install ok installed' in php7_test_fact_xdebug_extension_is_installed_ubuntu.stdout"
+  when: ansible_distribution == "Ubuntu"

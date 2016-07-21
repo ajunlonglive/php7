@@ -1,0 +1,20 @@
+---
+# Tests PHP 5 is installed correctly
+
+# If using non-system sources (preferred)
+
+- name: determine if non-system PHP packages are installed - Ubuntu
+  command: dpkg -s php7.0-cli
+  changed_when: False
+  register: php7_test_fact_php_packages_installed
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+- name: assert PHP packages are installed
+  assert:
+    that:
+      - "'install ok installed' in php7_test_fact_php_packages_installed.stdout"
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

@@ -1,0 +1,33 @@
+---
+# Test if the PHP 7 XDebug extension is configured correctly
+
+# The PHP 7 XDebug package for CentOS is currently missing from the webtatic repository and so cannot be installed
+# It is therefore skipped until this is resolved
+
+# - name: get contents of XDebug extension configuration file - CentOS
+#   command: cat /etc/php.d/xdebug.ini
+#   changed_when: false
+#   register: php7_test_fact_xdebug_extension_centos_configuration_file_contents
+#   when: ansible_distribution == "CentOS"
+# - name: assert XDebug extension configuration file was generated correctly - CentOS
+#   assert:
+#     that:
+#       - "'{{ item.1.option }} = {{ item.1.value }}' in php7_test_fact_xdebug_extension_centos_configuration_file_contents.stdout"
+#   with_subelements:
+#     - "{{ php7_ext_xdebug_options }}"
+#     - options
+#   when: ansible_distribution == "CentOS"
+
+- name: get contents of XDebug extension configuration file - Ubuntu
+  command: cat /etc/php/7.0/mods-available/xdebug.ini
+  changed_when: false
+  register: php7_test_fact_xdebug_extension_ubuntu_configuration_file_contents
+  when: ansible_distribution == "Ubuntu"
+- name: assert XDebug extension configuration file was generated correctly - Ubuntu
+  assert:
+    that:
+      - "'{{ item.1.option }} = {{ item.1.value }}' in php7_test_fact_xdebug_extension_ubuntu_configuration_file_contents.stdout"
+  with_subelements:
+    - "{{ php7_ext_xdebug_options }}"
+    - options
+  when: ansible_distribution == "Ubuntu"

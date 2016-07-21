@@ -19,11 +19,33 @@
 # These tests mirror individual tasks to ensure they execute correctly
 # E.g. creating a user, installing the right package or generating a valid configuration file
 
+- include: atomic/install-php.yml
+- include: atomic/install-ext-opcache.yml
+- include: atomic/install-ext-curl.yml
+- include: atomic/install-ext-gmp.yml
+- include: atomic/install-ext-xsl.yml
+- include: atomic/install-ext-pdo.yml
+- include: atomic/install-ext-xdebug.yml
+
+- include: atomic/configure-sapi-cli.yml
+- include: atomic/configure-ext-opcache.yml
+- include: atomic/configure-ext-xdebug.yml
+
 - include: atomic/register-role.yml
 
 # Functionality tests
 #
 # These tests ensure overall processes can be completed to give a valid result
 # E.g. checking a web-server serves a web-page ensures the relevant packages and configuration files work together
+
+- include: functionality/test-php.yml
+- include: functionality/test-ext-opcache.yml
+- include: functionality/test-ext-curl.yml
+- include: functionality/test-ext-gmp.yml
+- include: functionality/test-ext-xsl.yml
+- include: functionality/test-ext-pdo.yml
+- include: functionality/test-ext-xdebug.yml
+
+- include: functionality/test-composer.yml
 
 - include: functionality/barc-manifest.yml
