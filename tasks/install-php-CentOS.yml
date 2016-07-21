@@ -1,0 +1,28 @@
+---
+# Install the PHP 7 language
+
+# If using non-system sources (preferred)
+
+- name: install prerequisites for installing from non-system sources - CentOS
+  yum:
+                 pkg={{ item }}
+        update_cache=yes
+               state=present
+  with_items:
+    - https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    - https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+
+- name: install PHP 7 from non-system sources - CentOS
+  yum:
+             pkg={{ item }}
+    update_cache=yes
+           state=present
+  with_items:
+    - php70w-cli
+  when: BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True'
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

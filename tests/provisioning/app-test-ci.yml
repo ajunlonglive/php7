@@ -4,6 +4,8 @@
 - name: apply role and run tests
   hosts: localhost
   remote_user: "{{ privileged_remote_user }}"
+  vars:
+    php7_use_xdebug: true
   become: yes
   roles:
     - ../../../php7
