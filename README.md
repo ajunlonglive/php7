@@ -411,7 +411,7 @@ Important: Enabling this extension introduces additional performance and securit
 unless these considerations are suitably addressed.
 
 This role configures options for this extension. It is not safe to override options this role sets, however it is safe 
-to override the *php5_ext_xdebug_options* variable to remove options or change values this role sets.
+to override the *php7_ext_xdebug_options* variable to remove options or change values this role sets.
 
 It is safe to set any other options this role does not outside this role, they will not be overridden.
 
