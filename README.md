@@ -363,6 +363,22 @@ information.
 
 Note: On CentOS, the  'XML' package includes the 'XSL' extension.
 
+#### MBString
+
+"mbstring provides multibyte specific string functions that help you deal with multibyte encodings in PHP"
+
+Source: http://php.net/manual/en/book.mbstring.php
+
+This extension is enabled by default - it is controlled by the *php7_use_mbstring* variable.
+Currently this role does not configure options for this extension, however it is safe to do this outside this role.
+
+Note: If you enable this extension and then later choose to disable it, or where this extension is enabled by default,
+such as on CentOS, this role will not disable the extension. Instead you will need to re-build any machines this role 
+has been applied to.
+
+This is considered a limitation, but by intention and will not be addressed, see the *Limitations* section for more 
+information.
+
 #### PDO
 
 "The PHP Data Objects (PDO) extension defines a lightweight, consistent interface for accessing databases in PHP."
@@ -395,7 +411,7 @@ Important: Enabling this extension introduces additional performance and securit
 unless these considerations are suitably addressed.
 
 This role configures options for this extension. It is not safe to override options this role sets, however it is safe 
-to override the *php5_ext_xdebug_options* variable to remove options or change values this role sets.
+to override the *php7_ext_xdebug_options* variable to remove options or change values this role sets.
 
 It is safe to set any other options this role does not outside this role, they will not be overridden.
 
@@ -605,6 +621,19 @@ Default: *See role defaults*
 * **MAY** be specified
 * Specifies whether the XLS PHP extension should be installed to support XSL transformations
 * This variable is used as a 'feature flag' for whether tasks related to the XSL extension will be applied
+* See the *Usage* section for more information on this feature
+* Values **MUST** use one of these options, as determined by Ansible:
+  * `true`
+  * `false`
+* Values **SHOULD NOT** be quoted to prevent Ansible coercing values to a string
+* Where not specified, a value of `true` will be assumed
+* Default: `true`
+
+#### *php7_use_mbstring*
+
+* **MAY** be specified
+* Specifies whether the MBString PHP extension should be installed to support Multibyte encodings in PHP 
+* This variable is used as a 'feature flag' for whether tasks related to the MBString extension will be applied
 * See the *Usage* section for more information on this feature
 * Values **MUST** use one of these options, as determined by Ansible:
   * `true`

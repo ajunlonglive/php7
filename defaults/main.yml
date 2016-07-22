@@ -3,7 +3,7 @@
 
 # BARC specific variables
 php7_barc_role_name: php7
-php7_barc_role_version: 0.1.0
+php7_barc_role_version: 0.1.1
 
 BARC_use_non_system_package_sources: true
 
@@ -54,6 +54,8 @@ php7_use_curl: true
 php7_use_gmp: true
 
 php7_use_xsl: true
+
+php7_use_mbstring: true
 
 php7_use_pdo: true
 
