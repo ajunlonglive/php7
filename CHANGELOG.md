@@ -7,6 +7,8 @@ Remember: Make sure to update `php7_barc_role_version` variable when a new versi
 
 ## [Unreleased][unreleased]
 
+## 0.1.1 - 22/07/2016
+
 ### Fixed
 
 * Variable typos in README, composer install tasks
