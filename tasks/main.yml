@@ -30,7 +30,7 @@
     - BARC_INSTALL
     - BARC_INSTALL_PACKAGES
 
-- include: install-mbstring.yml
+- include: install-ext-mbstring.yml
   when: php7_use_mbstring == true
   tags:
     - BARC_INSTALL

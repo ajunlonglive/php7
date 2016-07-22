@@ -53,9 +53,9 @@ php7_use_curl: true
 
 php7_use_gmp: true
 
-php7_use_gmp: true
-
 php7_use_xsl: true
+
+php7_use_mbstring: true
 
 php7_use_pdo: true
 
