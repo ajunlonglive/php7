@@ -24,6 +24,7 @@
 - include: atomic/install-ext-curl.yml
 - include: atomic/install-ext-gmp.yml
 - include: atomic/install-ext-xsl.yml
+- include: atomic/install-ext-mbstring.yml
 - include: atomic/install-ext-pdo.yml
 - include: atomic/install-ext-xdebug.yml
 
@@ -43,6 +44,7 @@
 - include: functionality/test-ext-curl.yml
 - include: functionality/test-ext-gmp.yml
 - include: functionality/test-ext-xsl.yml
+- include: functionality/test-ext-mbstring.yml
 - include: functionality/test-ext-pdo.yml
 - include: functionality/test-ext-xdebug.yml
 
