@@ -7,6 +7,10 @@ Remember: Make sure to update `php7_barc_role_version` variable when a new versi
 
 ## [Unreleased][unreleased]
 
+### Fixed
+
+* Added missing system-only failure tasks and tests for installing PHP extensions
+
 ## 0.1.1 - 22/07/2016
 
 ### Fixed

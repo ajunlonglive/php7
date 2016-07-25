@@ -2,6 +2,19 @@
 
 # If using non-system sources (preferred)
 
+- name: determine if mbstring extension package is installed from non-system sources - CentOS
+  command: rpm -qa
+  changed_when: False
+  register: php7_test_fact_mbstring_extension_is_installed_non_system_centos
+  when: ansible_distribution == "CentOS" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+- name: assert mbstring extension package is installed from non-system sources - CentOS
+  assert:
+    that:
+      - "'-mbstring' in php7_test_fact_mbstring_extension_is_installed_non_system_centos.stdout"
+  when: ansible_distribution == "CentOS" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+
 - name: determine if mbstring extension package is installed - Ubuntu
   command: dpkg -s php7.0-mbstring
   changed_when: False
@@ -14,3 +27,8 @@
       - "'install ok installed' in php7_test_fact_mbstring_extension_is_installed_non_system_sources_ubuntu.stdout"
   when: ansible_distribution == "Ubuntu" and
     (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

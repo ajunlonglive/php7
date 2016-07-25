@@ -13,3 +13,9 @@
     that:
       - "'install ok installed' in php7_test_fact_curl_extension_is_installed_ubuntu.stdout"
   when: ansible_distribution == "Ubuntu"
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: ansible_distribution == "Ubuntu" and
+    (BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False')
