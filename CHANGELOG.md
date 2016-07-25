@@ -7,6 +7,17 @@ Remember: Make sure to update `php7_barc_role_version` variable when a new versi
 
 ## [Unreleased][unreleased]
 
+## 0.2.0 - 25/07/2016
+
+### Added
+
+* Zip extension support for installing composer packages 
+
+### Fixed
+
+* Added missing system-only failure tasks and tests for installing PHP extensions
+* Incorrect package name in test for XSL extension on CentOS
+
 ## 0.1.1 - 22/07/2016
 
 ### Fixed

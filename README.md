@@ -19,6 +19,7 @@ Installs and configures PHP 7 with selected extensions and the Composer package 
 * Optionally, installs and enables the GMP PHP extension, this is enabled by default
 * Optionally, installs and enables the XSL PHP extension, this is enabled by default
 * Optionally, installs and enables the PDO PHP extension, this is enabled by default
+* Optionally, installs and enables the Zip PHP extension, this is enabled by default
 * Optionally, installs, enables and configures the XDebug debugger extension, this is disabled by default
 * Optionally, installs the latest stable version of Composer, the PHP package manager, this is enabled by default
 
@@ -398,6 +399,23 @@ information.
 Note: By default only the SQLite PDO driver will be installed. Other drivers can be installed outside of this role,
 either using other BARC roles, or through additional playbooks.
 
+#### Zip
+
+"This extension enables you to transparently read or write ZIP compressed archives and the files inside them."
+
+Source: http://php.net/manual/en/book.zip.php
+
+This extension is enabled by default - it is controlled by the *php7_use_pdo* variable.
+Currently this roles does not configure options for this extension, however it is safe to do this outside this role.
+
+Note: If you enable this extension and then later choose to disable it, or where this extension is enabled by default, 
+this role will not disable the extension. Instead you will need to re-build any machines this role has been applied to.
+
+This is considered a limitation, but by intention and will not be addressed, see the *Limitations* section for more 
+information.
+
+Note: This extension is principally installed for use by Composer when installing packages.
+
 #### XDebug
 
 "Xdebug is a PHP extension which provides debugging and profiling capabilities. It uses the DBGp debugging protocol."
@@ -647,6 +665,19 @@ Default: *See role defaults*
 * **MAY** be specified
 * Specifies whether the PDO PHP extension should be installed to interact with various databases
 * This variable is used as a 'feature flag' for whether tasks related to the PDO extension will be applied
+* See the *Usage* section for more information on this feature
+* Values **MUST** use one of these options, as determined by Ansible:
+  * `true`
+  * `false`
+* Values **SHOULD NOT** be quoted to prevent Ansible coercing values to a string
+* Where not specified, a value of `true` will be assumed
+* Default: `true`
+
+#### *php7_use_zip*
+
+* **MAY** be specified
+* Specifies whether the Zip PHP extension should be installed to support reading and writing Zip archives in PHP 
+* This variable is used as a 'feature flag' for whether tasks related to the Zip extension will be applied
 * See the *Usage* section for more information on this feature
 * Values **MUST** use one of these options, as determined by Ansible:
   * `true`
