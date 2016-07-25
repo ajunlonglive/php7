@@ -10,6 +10,7 @@ Remember: Make sure to update `php7_barc_role_version` variable when a new versi
 ### Fixed
 
 * Added missing system-only failure tasks and tests for installing PHP extensions
+* Incorrect package name in test for XSL extension on CentOS
 
 ## 0.1.1 - 22/07/2016
 

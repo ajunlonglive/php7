@@ -13,7 +13,7 @@
 - name: assert XML extension package is installed from non-system sources - CentOS
   assert:
     that:
-      - "'-pdo' in php7_test_fact_xml_extension_is_installed_non_system_centos.stdout"
+      - "'-xml' in php7_test_fact_xml_extension_is_installed_non_system_centos.stdout"
   when: ansible_distribution == "CentOS" and
     (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
 
