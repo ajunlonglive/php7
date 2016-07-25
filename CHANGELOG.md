@@ -7,6 +7,10 @@ Remember: Make sure to update `php7_barc_role_version` variable when a new versi
 
 ## [Unreleased][unreleased]
 
+### Added
+
+* Zip extension support for installing composer packages 
+
 ### Fixed
 
 * Added missing system-only failure tasks and tests for installing PHP extensions

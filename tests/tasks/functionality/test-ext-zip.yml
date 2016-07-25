@@ -1,0 +1,6 @@
+---
+# Tests if the zip extension is enabled
+
+- name: determine if zip extension is enabled
+  shell: php -i | grep -q 'Zip => enabled'
+  changed_when: False

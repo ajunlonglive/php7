@@ -48,6 +48,12 @@
     - BARC_INSTALL
     - BARC_INSTALL_PACKAGES
 
+- include: install-ext-zip.yml
+  when: php7_use_zip == true
+  tags:
+    - BARC_INSTALL
+    - BARC_INSTALL_PACKAGES
+
 - include: install-composer.yml
   when: php7_use_composer == true
   tags:

@@ -27,6 +27,7 @@
 - include: atomic/install-ext-mbstring.yml
 - include: atomic/install-ext-pdo.yml
 - include: atomic/install-ext-xdebug.yml
+- include: atomic/install-ext-zip.yml
 
 - include: atomic/configure-sapi-cli.yml
 - include: atomic/configure-ext-opcache.yml
@@ -47,6 +48,7 @@
 - include: functionality/test-ext-mbstring.yml
 - include: functionality/test-ext-pdo.yml
 - include: functionality/test-ext-xdebug.yml
+- include: functionality/test-ext-zip.yml
 
 - include: functionality/test-composer.yml
 

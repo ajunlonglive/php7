@@ -1,0 +1,22 @@
+---
+# Install Zip extension
+
+# The Zip extension is already enabled on CentOS when using non-system and system only package sources
+
+# If using non-system sources (preferred)
+
+- name: install zip extension using non-system source - Ubuntu
+  apt:
+                 pkg={{ item }}
+        update_cache=yes
+    cache_valid_time=3600
+               state=present
+  with_items:
+    - php7.0-zip
+  when: ansible_distribution == "Ubuntu" and
+    (BARC_use_non_system_package_sources == true or BARC_use_non_system_package_sources == 'True')
+
+# If using system-sources only (non-supported)
+
+- fail: msg="PHP 7 is not availble from system only package sources - aborting."
+  when: BARC_use_non_system_package_sources == false or BARC_use_non_system_package_sources == 'False'

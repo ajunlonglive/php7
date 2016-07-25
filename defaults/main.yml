@@ -59,6 +59,8 @@ php7_use_mbstring: true
 
 php7_use_pdo: true
 
+php7_use_zip: true
+
 php7_use_composer: true
 
 php7_use_xdebug: false
